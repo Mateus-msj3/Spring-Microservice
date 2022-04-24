@@ -8,39 +8,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/")
+    @GetMapping()
     public List<UserDTO> getUsers() {
         List<UserDTO> userDTOS = userService.getAll();
         return userDTOS;
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     UserDTO findById(@PathVariable Long id) {
         return userService.findById(id);
     }
 
-    @PostMapping("/user")
+    @PostMapping()
     UserDTO newUser(UserDTO userDTO) {
         return userService.save(userDTO);
     }
 
-    @GetMapping("/user/cpf/{cpf}")
+    @GetMapping("/cpf/{cpf}")
     UserDTO findByCpf(@PathVariable String cpf) {
         return userService.findByCpf(cpf);
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/{id}")
     UserDTO delete(@PathVariable Long id) {
         return userService.delete(id);
     }
 
-    @GetMapping("/user/search")
-    public List<UserDTO> queryByName(@RequestParam(name="name", required = true) String name) {
-        return userService.queryByName(name);
+    @GetMapping("/search")
+    public List<UserDTO> queryByName(@RequestParam(name="nome", required = true) String nome) {
+        return userService.queryByName(nome);
     }
 }

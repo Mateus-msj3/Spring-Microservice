@@ -2,7 +2,7 @@ package com.microservices.userapi.model.dto;
 
 import com.microservices.userapi.model.User;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class UserDTO {
 
@@ -11,7 +11,7 @@ public class UserDTO {
     private String endereco;
     private String email;
     private String telefone;
-    private Date dataCadastro;
+    private LocalDateTime dataCadastro = LocalDateTime.now();
 
     public static UserDTO convert(User user){
         UserDTO userDTO = new UserDTO();
@@ -64,11 +64,11 @@ public class UserDTO {
         this.telefone = telefone;
     }
 
-    public Date getDataCadastro() {
+    public LocalDateTime getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
+    public void setDataCadastro(LocalDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 }

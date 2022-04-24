@@ -1,9 +1,10 @@
-create schema if not exists user-api-dev
-create table user-api-dev.user (
-    id bigserial primary key,
+create table user (
+    id integer not null auto_increment,
     nome varchar(100) not null,
     cpf varchar(100) not null,
     endereco varchar(100) not null,
     email varchar(100) not null,
-    telefone varchar(100) not null,data_cadastro timestamp not null
-);
+    telefone varchar(100) not null,
+    data_cadastro timestamp not null,
+    primary key(id)
+)engine=InnoDB;

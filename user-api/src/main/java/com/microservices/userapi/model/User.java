@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 public class User {
@@ -18,7 +18,7 @@ public class User {
     private String endereco;
     private String email;
     private String telefone;
-    private Date dataCadastro;
+    private LocalDateTime dataCadastro = LocalDateTime.now();
 
     public static  User convert(UserDTO userDTO) {
         User user = new User();
@@ -80,11 +80,11 @@ public class User {
         this.telefone = telefone;
     }
 
-    public Date getDataCadastro() {
+    public LocalDateTime getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
+    public void setDataCadastro(LocalDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 }
