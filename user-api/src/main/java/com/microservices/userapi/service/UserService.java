@@ -16,6 +16,6 @@ public interface UserService {
 
     UserDTO findByCpf(String cpf);
 
-    List<UserDTO> queryByName(String name);
+    List<UserDTO> queryByName(String nome);
 
 }

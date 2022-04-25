@@ -14,6 +14,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @PostMapping()
+    UserDTO newUser(@RequestBody UserDTO userDTO) {
+        return userService.save(userDTO);
+    }
+
     @GetMapping()
     public List<UserDTO> getUsers() {
         List<UserDTO> userDTOS = userService.getAll();
@@ -25,14 +30,14 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PostMapping()
-    UserDTO newUser(UserDTO userDTO) {
-        return userService.save(userDTO);
-    }
-
     @GetMapping("/cpf/{cpf}")
     UserDTO findByCpf(@PathVariable String cpf) {
         return userService.findByCpf(cpf);
+    }
+
+    @GetMapping("/search")
+    public List<UserDTO> queryByName(@RequestParam(name="nome", required = true) String nome) {
+        return userService.queryByName(nome);
     }
 
     @DeleteMapping("/{id}")
@@ -40,8 +45,4 @@ public class UserController {
         return userService.delete(id);
     }
 
-    @GetMapping("/search")
-    public List<UserDTO> queryByName(@RequestParam(name="nome", required = true) String nome) {
-        return userService.queryByName(nome);
-    }
 }

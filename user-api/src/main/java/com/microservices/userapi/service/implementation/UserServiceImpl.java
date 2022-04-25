@@ -57,8 +57,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> queryByName(String name) {
-        List<User> users = userRepository.queryByNomeLike(name);
+    public List<UserDTO> queryByName(String nome) {
+        List<User> users = userRepository.queryByNomeLike(nome);
         return users.stream().map(UserDTO::convert).collect(Collectors.toList());
     }
 }
