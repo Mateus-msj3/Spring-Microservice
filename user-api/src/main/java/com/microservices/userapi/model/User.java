@@ -20,6 +20,12 @@ public class User {
     private String telefone;
     private LocalDateTime dataCadastro = LocalDateTime.now();
 
+    public User() {
+    }
+
+    public User(long l, String mateus, String s, String rua_a, String s1, String s2) {
+    }
+
     public static  User convert(UserDTO userDTO) {
         User user = new User();
         user.setNome(userDTO.getNome());
