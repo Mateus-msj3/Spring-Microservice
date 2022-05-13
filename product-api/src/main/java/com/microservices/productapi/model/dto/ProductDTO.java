@@ -1,5 +1,7 @@
 package com.microservices.productapi.model.dto;
 
+import com.microservices.productapi.model.Product;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -61,5 +63,17 @@ public class ProductDTO {
         this.categoryDTO = categoryDTO;
     }
 
+    public static ProductDTO convert(Product product) {
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setNome(product.getNome());
+        productDTO.setPreco(product.getPreco());
+        productDTO.setProductIdentifier(productDTO.getProductIdentifier());
+        productDTO.setDescricao(productDTO.getDescricao());
+
+        if (product.getCategory() != null) {
+            productDTO.setCategoryDTO(CategoryDTO.convert(product.getCategory()));
+        }
+        return productDTO;
+    }
 
 }

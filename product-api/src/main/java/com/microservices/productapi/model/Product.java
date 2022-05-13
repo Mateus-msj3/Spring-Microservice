@@ -24,19 +24,6 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public static Product convert(ProductDTO productDTO) {
-        Product product = new Product();
-        product.setNome(product.getNome());
-        product.setPreco(product.getPreco());
-        product.setDescricao(product.getDescricao());
-        product.setProductIdentifier(product.getProductIdentifier());
-
-        if (productDTO.getCategoryDTO() != null) {
-            product.setCategory(Category.convert(productDTO.getCategoryDTO()));
-        }
-        return product;
-    }
-
     public Long getId() {
         return id;
     }
@@ -83,5 +70,18 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public static Product convert(ProductDTO productDTO) {
+        Product product = new Product();
+        product.setNome(product.getNome());
+        product.setPreco(product.getPreco());
+        product.setDescricao(product.getDescricao());
+        product.setProductIdentifier(product.getProductIdentifier());
+
+        if (productDTO.getCategoryDTO() != null) {
+            product.setCategory(Category.convert(productDTO.getCategoryDTO()));
+        }
+        return product;
     }
 }
