@@ -1,5 +1,6 @@
 package com.microservices.productapi.model.dto;
 
+import com.microservices.productapi.model.Category;
 import com.microservices.productapi.model.Product;
 
 import javax.validation.constraints.NotBlank;
@@ -9,19 +10,23 @@ import java.math.BigDecimal;
 public class ProductDTO {
 
     @NotBlank
+    private String productIdentifier;
+    @NotBlank
     private String nome;
-
-    @NotNull
-    private BigDecimal preco;
-
     @NotBlank
     private String descricao;
-
-    @NotBlank
-    private String productIdentifier;
-
     @NotNull
-    private CategoryDTO categoryDTO;
+    private BigDecimal preco;
+    @NotNull
+    private CategoryDTO category;
+
+    public String getProductIdentifier() {
+        return productIdentifier;
+    }
+
+    public void setProductIdentifier(String productIdentifier) {
+        this.productIdentifier = productIdentifier;
+    }
 
     public String getNome() {
         return nome;
@@ -29,14 +34,6 @@ public class ProductDTO {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
     }
 
     public String getDescricao() {
@@ -47,31 +44,32 @@ public class ProductDTO {
         this.descricao = descricao;
     }
 
-    public String getProductIdentifier() {
-        return productIdentifier;
+    public BigDecimal getPreco() {
+        return preco;
     }
 
-    public void setProductIdentifier(String productIdentifier) {
-        this.productIdentifier = productIdentifier;
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
     }
 
-    public CategoryDTO getCategoryDTO() {
-        return categoryDTO;
+    public CategoryDTO getCategory() {
+        return category;
     }
 
-    public void setCategoryDTO(CategoryDTO categoryDTO) {
-        this.categoryDTO = categoryDTO;
+    public void setCategory(CategoryDTO category) {
+        this.category = category;
     }
 
     public static ProductDTO convert(Product product) {
         ProductDTO productDTO = new ProductDTO();
         productDTO.setNome(product.getNome());
         productDTO.setPreco(product.getPreco());
-        productDTO.setProductIdentifier(productDTO.getProductIdentifier());
-        productDTO.setDescricao(productDTO.getDescricao());
-
+        productDTO.setProductIdentifier(
+                product.getProductIdentifier());
+        productDTO.setDescricao(product.getDescricao());
         if (product.getCategory() != null) {
-            productDTO.setCategoryDTO(CategoryDTO.convert(product.getCategory()));
+            productDTO.setCategory(
+                    CategoryDTO.convert(product.getCategory()));
         }
         return productDTO;
     }

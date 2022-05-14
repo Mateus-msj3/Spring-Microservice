@@ -1,24 +1,27 @@
 package com.microservices.productapi.model;
 
+import com.microservices.productapi.model.dto.CategoryDTO;
 import com.microservices.productapi.model.dto.ProductDTO;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@Entity
+@Entity(name="product")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
+    private String productIdentifier;
 
-    private BigDecimal preco;
+    private String nome;
 
     private String descricao;
 
-    private String productIdentifier;
+    private BigDecimal preco;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -32,20 +35,20 @@ public class Product {
         this.id = id;
     }
 
+    public String getProductIdentifier() {
+        return productIdentifier;
+    }
+
+    public void setProductIdentifier(String productIdentifier) {
+        this.productIdentifier = productIdentifier;
+    }
+
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
     }
 
     public String getDescricao() {
@@ -56,12 +59,12 @@ public class Product {
         this.descricao = descricao;
     }
 
-    public String getProductIdentifier() {
-        return productIdentifier;
+    public BigDecimal getPreco() {
+        return preco;
     }
 
-    public void setProductIdentifier(String productIdentifier) {
-        this.productIdentifier = productIdentifier;
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
     }
 
     public Category getCategory() {
@@ -74,13 +77,14 @@ public class Product {
 
     public static Product convert(ProductDTO productDTO) {
         Product product = new Product();
-        product.setNome(product.getNome());
-        product.setPreco(product.getPreco());
-        product.setDescricao(product.getDescricao());
-        product.setProductIdentifier(product.getProductIdentifier());
-
-        if (productDTO.getCategoryDTO() != null) {
-            product.setCategory(Category.convert(productDTO.getCategoryDTO()));
+        product.setNome(productDTO.getNome());
+        product.setPreco(productDTO.getPreco());
+        product.setDescricao(productDTO.getDescricao());
+        product.setProductIdentifier(
+                productDTO.getProductIdentifier());
+        if (productDTO.getCategory() != null) {
+            product.setCategory(
+                    Category.convert(productDTO.getCategory()));
         }
         return product;
     }
