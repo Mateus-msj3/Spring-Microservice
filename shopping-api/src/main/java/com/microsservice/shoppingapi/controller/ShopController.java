@@ -1,4 +1,4 @@
-package com.microsservice.shoppingapi.model.controller;
+package com.microsservice.shoppingapi.controller;
 
 import com.microsservice.shoppingapi.model.dto.ShopDTO;
 import com.microsservice.shoppingapi.service.ShopService;
