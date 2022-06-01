@@ -15,5 +15,5 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
 
     public List<Shop> findAllByTotalGreaterThan(BigDecimal total);
 
-    public List<Shop> findAllByDateGreaterThanEquals(Date date);
+   // List<Shop> findAllByDateGreaterThanEquals(Date date);
 }

@@ -26,14 +26,14 @@ public class ShopController {
         return products;
     }
 
-    @GetMapping("/shopping/shopByDate")
-    public List<ShopDTO> getShops(@RequestBody ShopDTO shopDTO) {
-        List<ShopDTO> products = shopService.getByDate(shopDTO);
-        return products;
-    }
+    //@GetMapping("/shopping/shopByDate")
+    //public List<ShopDTO> getShops(@RequestBody ShopDTO shopDTO) {
+        //List<ShopDTO> products = shopService.getByDate(shopDTO);
+        //return products;
+    //}
 
     @GetMapping("/shopping/{id}")
-    public ShopDTO getShops(@PathVariable Long id) {
+    public ShopDTO findById(@PathVariable Long id) {
         return shopService.findById(id);
     }
 

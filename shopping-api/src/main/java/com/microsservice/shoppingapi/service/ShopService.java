@@ -28,10 +28,10 @@ public class ShopService {
         return shops.stream().map(ShopDTO::convert).collect(Collectors.toList());
     }
 
-    public List<ShopDTO> getByDate(ShopDTO shopDTO) {
-        List<Shop> shops = shopRepository.findAllByDateGreaterThanEquals(shopDTO.getDate());
-        return shops.stream().map(ShopDTO::convert).collect(Collectors.toList());
-    }
+    //public List<ShopDTO> getByDate(ShopDTO shopDTO) {
+      //  List<Shop> shops = shopRepository.findAllByDateGreaterThanEquals(shopDTO.getDate());
+        //return shops.stream().map(ShopDTO::convert).collect(Collectors.toList());
+    //}
 
     public ShopDTO findById(Long productId) {
         Optional<Shop> shop = shopRepository.findById(productId);
